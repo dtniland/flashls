@@ -11,7 +11,8 @@ package org.mangui.hls.stream {
     import org.mangui.hls.constant.HLSPlayStates;
     import org.mangui.hls.constant.HLSSeekMode;
     import org.mangui.hls.constant.HLSSeekStates;
-    import org.mangui.hls.constant.HLSTypes;
+import org.mangui.hls.constant.HLSTypes;
+import org.mangui.hls.constant.HLSTypes;
     import org.mangui.hls.controller.AudioTrackController;
     import org.mangui.hls.controller.LevelController;
     import org.mangui.hls.event.HLSEvent;
@@ -627,7 +628,7 @@ package org.mangui.hls.stream {
          *  clipping backbuffer
          */
         private function _checkBuffer(e : Event) : void {
-            var pos : Number = position;
+            var pos : Number = _hls.type == HLSTypes.LIVE ? Math.min(position, _playlistDuration-0.01) : position;
             var bufLen : Number = _hls.stream.bufferLength;
             var watched : Number = (_hls.stream as HLSNetStream).watched;
             var currentTime : int = getTimer();
